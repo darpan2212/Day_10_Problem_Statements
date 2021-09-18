@@ -13,6 +13,23 @@ do
 	varArray[cnt]=${math[calc"$(( cnt+1 ))"]};
 done
 
+echo "Original order of array :- "${varArray[@]};
+
+for (( i=0;i<${#varArray[@]};i++ ))
+do
+	for (( j=i+1; j<${#varArray[@]};j++ ))
+	do
+		if [ ${varArray[i]} -lt ${varArray[j]} ]
+		then
+			temp=${varArray[i]};
+			varArray[i]=${varArray[j]};
+			varArray[j]=$temp;
+		fi
+	done
+	echo "After step $i :- "${varArray[@]};
+done
+
 echo $a $b $c;
 echo ${math[@]};
-echo ${varArray[@]};
+echo ${!math[@]};
+echo "Sorted array :- "${varArray[@]};
